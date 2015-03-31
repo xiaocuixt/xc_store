@@ -1,0 +1,5 @@
+= form_tag(create_user_sessions_path, remote: true)
+  li#js-alert
+  li = text_field_tag :user_name_or_email, nil, placeholder: '用户名'
+  li = text_field_tag :user_password, nil, placeholder: '密码'
+  li = submit_tag '登陆'
