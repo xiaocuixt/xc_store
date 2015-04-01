@@ -1,2 +1,5 @@
 = link_to '注册', sign_up_users_path
 = link_to '登录', sign_in_user_sessions_path
+- if current_user_sign_in?
+  = current_user.name
+= link_to '退出', sign_out_user_sessions_path, method: :delete

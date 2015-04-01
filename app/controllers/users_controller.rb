@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     unless params[:user][:password].present?
       return render js: "$('#js-alert').html('密码不能为空');"
     end
-    if params[:user][:password] != params[:confirm_password]
+    if params[:user][:password] != params[:user][:password_confirmation]
       return render js: "$('#js-alert').html('两次输入密码不一致');"
     end
     if @user.save
@@ -19,6 +19,6 @@ class UsersController < ApplicationController
   end
   private
   def user_params
-    params.require(:user).permit(:email, :name, :password)
+    params.require(:user).permit(:email, :name, :password, :password_confirmation)
   end
 end

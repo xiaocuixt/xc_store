@@ -15,10 +15,15 @@ class UserSessionsController < ApplicationController
       return render js: "$('#js-alert').html('密码不能为空');"
     end
     if @user.validate?(params[:user_password])
-      #sign_in(@user)
+      sign_in(@user)  #将登陆user的id存到session里
       return render js: "window.location.href='#{root_url}'"
     else
       return render js: "$('#js-alert').html('密码不正确');"
     end
+  end
+  def sign_out
+    @user = User.find_by(id: session[:user_id])
+    sign_out(@user)
+    return redirect_to root_url
   end
 end
