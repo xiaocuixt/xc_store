@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     collection do
       get '/sign_in', to: 'user_sessions#new', as: :sign_in
       post '/create', to: 'user_sessions#create'
-      delete '/sign_out', to: 'user_sessions#sign_out'
+      delete '/sign_out', to: 'user_sessions#logout'
     end
   end
 

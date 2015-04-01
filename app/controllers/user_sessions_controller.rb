@@ -21,9 +21,8 @@ class UserSessionsController < ApplicationController
       return render js: "$('#js-alert').html('密码不正确');"
     end
   end
-  def sign_out
-    @user = User.find_by(id: session[:user_id])
-    sign_out(@user)
+  def logout
+    session[:user_id] = nil
     return redirect_to root_url
   end
 end
