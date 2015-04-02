@@ -1,0 +1,14 @@
+ul
+  li
+    = image_tag(@product.image, size: "100x100")
+    p.title = link_to @product.name[0..10], @product
+    p.price = "￥#{@product.stock_amount}"
+    = form_for(LineItem.new, url: line_items_path) do |f|
+      = f.hidden_field :product_id, value: @product.id
+      = f.submit '加入购物车'
+css:
+  ul, li {list-style: none; margin: 0; padding: 0;}
+  li {width: 150px; height: 200px; margin: 0 auto;}
+  img {width: 100px; height:100px; overflow:hidden;}
+  p.title {height: 40px; line-height: 20px; overflow: hidden; }
+  p.price {color: #f30; font-weight: bold;}

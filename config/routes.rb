@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   end
 
   resources :products
+  resources :carts, only: [:index]
+  resources :line_items, only: [:create]
+
+  namespace :admin do
+    resources :products
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
