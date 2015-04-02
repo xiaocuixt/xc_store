@@ -1,0 +1,27 @@
+- sum_price = 0
+- if @line_items
+  table
+    thead
+      tr
+        th 图片
+        th 标题
+        th 价格
+        th 数量
+    - @line_items.each do |line_item|
+      tbody
+        tr
+          td = image_tag(line_item.product.image, size: "100x100")
+          td.title = link_to line_item.product.name[0..10], products_path(line_item.product)
+          td.price = "￥#{line_item.product.stock_amount}"
+          td.num = "#{line_item.quantity}"
+          - sum_price += line_item.product.stock_amount * line_item.quantity
+  .sum-price = "总计#{sum_price}"
+  = button_to '提交订单'
+- else
+  | 购物车为空
+css:
+  table, th, td {padding: 0; margin: 0;}
+  table {width: 800px; height: 100px; margin: 10px auto;}
+  tbody{ border-bottom: solid 1px #f30;}
+  td.title {line-height: 100px;}
+  input, .sum-price { float: right;}

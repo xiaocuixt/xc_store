@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   include BCrypt
   validates :password, :confirmation => true
 
+  has_one :cart, dependent: :destroy
+
   def password
     @password ||= Password.new(encrypted_password)
   end
