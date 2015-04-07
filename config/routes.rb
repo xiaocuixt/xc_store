@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   resources :products
   resources :carts, only: [:index]
   resources :line_items, only: [:create]
+  resources :orders, only: [:new, :create] do
+    collection do
+      get :success
+    end
+  end
 
   namespace :admin do
     resources :products

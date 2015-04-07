@@ -16,12 +16,7 @@
           td.num = "#{line_item.quantity}"
           - sum_price += line_item.product.stock_amount * line_item.quantity
   .sum-price = "总计#{sum_price}"
-  = link_to '提交订单', new_order_path
+  = form_for(Order.new, url: :orders) do |f|
+    = f.submit '确认订单'
 - else
-  | 购物车为空
-css:
-  table, th, td {padding: 0; margin: 0;}
-  table {width: 800px; height: 100px; margin: 10px auto;}
-  tbody{ border-bottom: solid 1px #f30;}
-  td.title {line-height: 100px;}
-  input, .sum-price { float: right;}
+  | 请重新添加商品

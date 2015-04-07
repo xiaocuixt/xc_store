@@ -1,0 +1,20 @@
+|我的订单
+- sum_price = 0
+- if @order_line_items
+  table
+    thead
+      tr
+        th 图片
+        th 标题
+        th 价格
+        th 数量
+    - @order_line_items.each do |order_line_item|
+      tbody
+        tr
+          td = image_tag(order_line_item.product.image, size: "100x100")
+          td.title = link_to order_line_item.product.name[0..10], products_path(order_line_item.product)
+          td.price = "￥#{order_line_item.product.stock_amount}"
+          td.num = "#{order_line_item.quantity}"
+          - sum_price += order_line_item.product.stock_amount * order_line_item.quantity
+  .sum-price = "总计#{sum_price}"
+= link_to '去支付'
